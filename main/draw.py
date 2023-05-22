@@ -5,10 +5,17 @@ from point import Points
 def draw_points(points):
     t.up()
     t.shape(name="circle")
+    labels = points.points
+    i = 0
     for x, y in zip(points.x, points.y):
-        t.goto(x, y)
+        t.goto(x, y+10)
         t.down()
+        t.write(labels[i], font=("Verdana",
+                                 15, "normal"))
+        i += 1
+        t.goto(x, y)
         t.stamp()
+
         t.up()
 
 def connect(x1, x2, state):
@@ -20,24 +27,24 @@ def connect(x1, x2, state):
     t.down()
     if x1 > x2:
         t.left(90)
-        t.circle(radius=abs(x2 - x1) / 2, extent=90)
+        t.circle(radius=abs(x2 - x1) / 2, extent=45)
         t.write(state, font=("Verdana",
                                     15, "normal"))
-        t.circle(radius=abs(x2 - x1) / 2, extent=90)
+        t.circle(radius=abs(x2 - x1) / 2, extent=135)
         t.left(90)
     elif x1 < x2:
         t.right(90)
-        t.circle(radius=abs(x2 - x1) / 2, extent=90)
+        t.circle(radius=abs(x2 - x1) / 2, extent=45)
         t.write(state, font=("Verdana",
                                     15, "normal"))
-        t.circle(radius=abs(x2 - x1) / 2, extent=90)
+        t.circle(radius=abs(x2 - x1) / 2, extent=135)
         t.right(90)
     else:
         t.right(90)
-        t.circle(radius=15, extent=180)
+        t.circle(radius=15, extent=90)
         t.write(state, font=("Verdana",
                                     15, "normal"))
-        t.circle(radius=15, extent=180)
+        t.circle(radius=15, extent=270)
         t.left(90)
 
 
